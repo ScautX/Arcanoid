@@ -81,7 +81,7 @@ public class MyGame implements ApplicationListener {
 
 	@Override
 	public void create() {
-		// загрузка изображений для капли и ведра, 64x64 пикселей каждый
+
 		rollImage = new Texture(Gdx.files.internal("roll.png"));
 		blockImage = new Texture(Gdx.files.internal("block.png"));
         ballImage = new Texture(Gdx.files.internal("ball.png"));
@@ -89,7 +89,7 @@ public class MyGame implements ApplicationListener {
 		GOImage = new Texture(Gdx.files.internal("GO.png"));
 
 
-		// загрузка звукового эффекта падающей капли и фоновой "музыки" дождя
+
 		collSound = Gdx.audio.newSound(Gdx.files.internal("waterdrop.wav"));
 		Music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
 
@@ -98,12 +98,12 @@ public class MyGame implements ApplicationListener {
 		    Music.setVolume(0.5f);
 			//Music.play();
 
-		// создается камера и SpriteBatch
+
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 800, 480);
 		batch = new SpriteBatch();
 
-		// создается Rectangle для представления ведра
+
 		roll = new Rectangle();
 
         ball = new Circle();
@@ -123,7 +123,7 @@ public class MyGame implements ApplicationListener {
         ball.y = 20+32+16;
         ball.radius = 16;
 		ballStart = ball.x;
-		// создает массив капель и возрождает первую
+
 		blocks = new int[blocksQX][blocksQY];
 		for (int y = 0; y < blocksQY; y += 1) {
 			for (int x = 0; x < blocksQX; x += 1) {
@@ -155,22 +155,17 @@ public class MyGame implements ApplicationListener {
 
 	@Override
 	public void render() {
-		// очищаем экран темно-синим цветом.
-		// Аргументы для glClearColor красный, зеленый
-		// синий и альфа компонент в диапазоне [0,1]
-		// цвета используемого для очистки экрана.
+
 		Gdx.gl.glClearColor(0, 0, 0.2f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		// сообщает камере, что нужно обновить матрицы
+
 		camera.update();
 
-		// сообщаем SpriteBatch о системе координат
-		// визуализации указанной для камеры.
+
 		batch.setProjectionMatrix(camera.combined);
 
-		// начинаем новую серию, рисуем ведро и
-		// все капли
+
 		batch.begin();
 		batch.draw(rollImage, roll.x, roll.y, roll.width, roll.height);
         batch.draw(ballImage, ball.x-ball.radius, ball.y-ball.radius, ball.radius*2, ball.radius*2);
@@ -197,7 +192,7 @@ public class MyGame implements ApplicationListener {
 		batch.end();
 
         
-		// обработка пользовательского ввода
+
 		if (Gdx.input.isTouched()) {
             Vector3 touchPos = new Vector3();
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
